@@ -89,7 +89,9 @@ public class MIDIFunctions {
 		public String docs() {
 			return "string {file, location, [id, [playNow]]} Creates a new MIDI sequence from the MIDI file that will be play at the given location, and returns the sequenceID."
 					 + " The block at the location must be a Note Block, the id must be unique, if it is not given or null, an unique id is created, playNow take a boolean,"
-					 + " if false, the sequence is paused and it is not played immediatly, default to true. When a sequence is finished, it is removed.";
+					 + " if false, the sequence is paused and it is not played immediatly, default to true. When a sequence is finished, it is removed."
+					 + " There are somes limitations imposed by Minecraft, the range of pitches is between F#3 to F#5 included, the pan, volume, sustain and others features are ignored,"
+					 + " and Minecraft contains only four instruments. You can get more infos about MIDI format [http://en.wikipedia.org/wiki/General_MIDI|here].";
 		}
 
 		public Version since() {
