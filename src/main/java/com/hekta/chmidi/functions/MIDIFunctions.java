@@ -262,9 +262,9 @@ public class MIDIFunctions {
 		}
 
 		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
-			CArray sequenceList = new Carray(t);
-			for (CHMIDISequencer sequencer : CHMIDISequencerManager.getSequencers()) {
-				sequenceList.push(new CString(sequencer.getID(), t), t);
+			CArray sequenceList = new CArray(t);
+			for (String sequencerID : CHMIDISequencerManager.getSequencers().keySet()) {
+				sequenceList.push(new CString(sequencerID, t));
 			}
 			return sequenceList;
 		}
