@@ -231,6 +231,46 @@ public class MIDIFunctions {
 	}
 
 	@api
+	public static class midi_all_sequences extends AbstractFunction {
+
+		public String getName() {
+			return "midi_all_sequences";
+		}
+
+		public Integer[] numArgs() {
+			return new Integer[]{0};
+		}
+
+		public ExceptionType[] thrown() {
+			return new ExceptionType[]{};
+		}
+
+		public boolean isRestricted() {
+			return true;
+		}
+
+		public Boolean runAsync() {
+			return false;
+		}
+
+		public String docs() {
+			return "array {} Returns an array containing all sequence IDs.";
+		}
+
+		public Version since() {
+			return CHVersion.V3_3_1;
+		}
+
+		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
+			CArray sequenceList = new Carray(t);
+			for (CHMIDISequencer sequencer : CHMIDISequencerManager.getSequencers()) {
+				sequenceList.push(new CString(sequencer.getID(), t), t);
+			}
+			return sequenceList;
+		}
+	}
+
+	@api
 	public static class midi_pause extends AbstractFunction {
 
 		public String getName() {
